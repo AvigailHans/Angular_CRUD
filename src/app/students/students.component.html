@@ -1,0 +1,68 @@
+<h4 class="font-weight-bold py-3 mb-4">Students Contact Info</h4>
+<label for="search"> </label>
+<form [formGroup]="studentForm" autocomplete="new-password" novalidate>
+  <mat-form-field style="width: 100%; font-size: large">
+    <mat-icon>search</mat-icon>
+    <input
+      id="search"
+      matInput
+      class="input-underline search-bar"
+      formControlName="search"
+      placeholder="Type To Search"
+      (input)="openDropDown()"
+      (focus)="showDropDown = true"
+    />
+  </mat-form-field>
+</form>
+<div clickOutside (clickOutside)="closeDropDown()">
+  <div *ngIf="showDropDown" class="search-drop-down">
+    <div
+      (click)="selectValue(s.id)"
+      class="search-results"
+      *ngFor="let s of students"
+    >
+      <a [innerHTML]="s.id_num | letterBold: getSearchValue()">
+        {{ s.id_num }} </a
+      >,
+
+      <a [innerHTML]="s.f_name | letterBold: getSearchValue()">
+        {{ s.f_name }} </a
+      >,
+      <a [innerHTML]="s.l_name | letterBold: getSearchValue()">
+        {{ s.l_name }} </a
+      >,
+      <a [innerHTML]="s.address | letterBold: getSearchValue()">
+        {{ s.address }} </a
+      >,
+      <a [innerHTML]="s.phone | letterBold: getSearchValue()">
+        {{ s.phone }}
+      </a>
+    </div>
+  </div>
+</div>
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+
+<table class="table table-dark" *ngIf="!isLoadingResults">
+  <tr>
+    <th>
+      <a [routerLink]="['/students-add']"> + Add </a>
+    </th>
+    <th>ID Num</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Address</th>
+    <th>Phone</th>
+  </tr>
+  <tr *ngFor="let element of students">
+    <td>
+      <a [routerLink]="['/students-edit', element.id]"> Edit </a>
+      &nbsp; &nbsp;
+      <a (click)="delete(element.id)">Delete</a>
+    </td>
+    <td>{{ element.id_num }}</td>
+    <td>{{ element.f_name }}</td>
+    <td>{{ element.l_name }}</td>
+    <td>{{ element.address }}</td>
+    <td>{{ element.phone }}</td>
+  </tr>
+</table>

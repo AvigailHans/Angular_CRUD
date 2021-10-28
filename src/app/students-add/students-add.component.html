@@ -1,0 +1,82 @@
+<div class="example-container mat-elevation-z8">
+  <mat-card>
+    <form [formGroup]="studentForm" (ngSubmit)="onFormSubmit()">
+      <mat-form-field style="width: 100%; font-size: large">
+        <input matInput placeholder="ID Num" formControlName="id_num" />
+        <mat-error>
+          <span
+            *ngIf="
+              !studentForm.get('id_num').valid &&
+              studentForm.get('id_num').touched
+            "
+            >Please enter valid ID Num</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 100%; font-size: large">
+        <input matInput placeholder="First Name" formControlName="f_name" />
+        <mat-error>
+          <span
+            *ngIf="
+              !studentForm.get('f_name').valid &&
+              studentForm.get('f_name').touched
+            "
+            >Please enter First Name</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 100%; font-size: large">
+        <input matInput placeholder="Last Name" formControlName="l_name" />
+        <mat-error>
+          <span
+            *ngIf="
+              !studentForm.get('l_name').valid &&
+              studentForm.get('l_name').touched
+            "
+            >Please enter Last Nmae</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 100%; font-size: large">
+        <input matInput placeholder="Address" formControlName="address" />
+        <mat-error>
+          <span
+            *ngIf="
+              !studentForm.get('address').valid &&
+              studentForm.get('address').touched
+            "
+            >Please enter Address</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 100%; font-size: large">
+        <input matInput placeholder="Phone Numbber" formControlName="phone" />
+        <mat-error>
+          <span
+            *ngIf="
+              !studentForm.get('phone').valid &&
+              studentForm.get('phone').touched
+            "
+            >Please enter Phone Numbber</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-row">
+        <button
+          type="submit"
+          [disabled]="!studentForm.valid"
+          mat-flat-button
+          color="primary"
+        >
+          Add
+        </button>
+      </div>
+      <div class="button-row"></div>
+    </form>
+  </mat-card>
+  <div *ngIf="">Ooops ther's an error !!!</div>
+  <div class="button-row">
+    <a mat-flat-button [routerLink]="['/students']">Back to list</a>
+  </div>
+</div>
